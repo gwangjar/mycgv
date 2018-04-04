@@ -11,6 +11,7 @@ import javax.servlet.ServletContext;
 import mycgv.dao.BoardDAO;
 import mycgv.vo.BoardVO;
 
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,12 +23,14 @@ public class BoardController {
 	// Field에 추가
 	@Autowired
 	ServletContext context;
+	@Autowired
+	SqlSessionTemplate sqlSession;
 
 	// board list 페이지네비사용
 	@RequestMapping(value = "/board.do", method = RequestMethod.GET)
-	public ModelAndView board(String rpage) {
+	public ModelAndView board(String rpage){
 		ModelAndView mv = new ModelAndView();
-		BoardDAO dao = new BoardDAO();
+		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
 		// 페이징 처리 - startCount, endCount 구하기
 		int startCount = 0;
 		int endCount = 0;
@@ -55,7 +58,6 @@ public class BoardController {
 			rpage = "1";
 		}
 		ArrayList<BoardVO> list = dao.getResultList(startCount, endCount);
-		dao.close();
 		mv.addObject("list", list);
 		mv.addObject("rpage", rpage);
 		mv.addObject("dbCount", dbCount);
@@ -98,10 +100,8 @@ public class BoardController {
 		}
 		// 파일 업로드 종료
 		String page = "";
-		BoardDAO dao = new BoardDAO();
+		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
 		int result = dao.getInsertResult(vo);
-		dao.close();
-
 		if (result == 1) {
 			page = "redirect:/board.do";
 
@@ -115,10 +115,10 @@ public class BoardController {
 	@RequestMapping(value = "/board_content.do", method = RequestMethod.GET)
 	public ModelAndView board_content(String no, String rno, String rpage) {
 		ModelAndView mv = new ModelAndView();
-		BoardDAO dao = new BoardDAO();
+		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
 		BoardVO vo = dao.getResultVO(no);
 		dao.getUpdateHits(no);
-		dao.close();
+		
 		mv.setViewName("/board/board_content");
 		/* ModelAndView에 객체 넣기 */
 		mv.addObject("vo", vo);
@@ -133,9 +133,9 @@ public class BoardController {
 	@RequestMapping(value = "/board_update.do")
 	public ModelAndView board_update(String no, String rno) {
 		ModelAndView mv = new ModelAndView();
-		BoardDAO dao = new BoardDAO();
+		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
 		BoardVO vo = dao.getResultVO(no);
-		dao.close();
+		
 		mv.addObject("vo", vo);
 		mv.setViewName("/board/board_update");
 		return mv;
@@ -149,12 +149,12 @@ public class BoardController {
 
 		int result= 0;
 		String page = "";
-		BoardDAO dao = new BoardDAO();
+		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
 		
 		if(vo.getCode().equals("exist")){
 			//db에 저장된 파일 유지 / 제목 내용 업데이트
 			result = dao.getUpdateResultNoFile(vo);
-			dao.close();
+		
 			
 		}else{
 //			원래 있던 파일 삭제하기 
@@ -186,12 +186,10 @@ public class BoardController {
 				vo.setRfname(rfname);
 				
 				result = dao.getUpdateResult(vo);
-				dao.close();
+		
 			}
 		}
-		
-
-		
+			
 		if (result == 1) {
 			page = "redirect:/board.do";
 
@@ -205,6 +203,8 @@ public class BoardController {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("no", no);
 		mv.addObject("rno", rno);
+		
+		
 		mv.setViewName("/board/board_delete");
 		return mv;
 	}
@@ -214,12 +214,13 @@ public class BoardController {
 	 */
 	@RequestMapping(value = "/board_delete.do", method = RequestMethod.POST)
 	public String board_delete(String no) throws IOException {
+		System.out.println(no);
 		String page = "";
-		BoardDAO dao = new BoardDAO();
+		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
 
 		// 1.rfname 값을 DB에서 가져오기
 		String rfname = dao.getRfnameResult(no); // rfname과 getDelete 순서 맞춰야함.
-		System.out.println(rfname);
+		System.out.println("보드 삭제 쪽:"+rfname);
 
 		// 2.servletContext upload 폴더 경로 생성
 		String path = context.getRealPath("/upload/" + rfname);
@@ -228,6 +229,7 @@ public class BoardController {
 		// 다시 확인~!@~@~!@
 
 		int result = dao.getDeleteResult(no);
+		System.out.println(no);
 		if (result == 1) {
 			File file = new File(path);
 			if (file.exists()) {
@@ -239,7 +241,7 @@ public class BoardController {
 			page = "redirect:/board.do";
 
 		}
-		dao.close();
+		
 		return page;
 
 	}

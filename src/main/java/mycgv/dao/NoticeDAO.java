@@ -101,19 +101,6 @@ public interface NoticeDAO {
 
 	/* hits Update Method */
 	public void getHitsResult(String no);
-	/*
-	{
-		try {
-			String sql = "update cgv_notice set hits=hits+1 where no=?";
-			getPreparedStatement(sql);
-			pstmt.setString(1, no);
-			pstmt.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-	}
-*/
 
 
 }
