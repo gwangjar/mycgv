@@ -19,7 +19,7 @@
 		select count(*) from cgv_member where id=#{id}
 	</select>
 	
-	<select id="execTotalCount">
+	<select id="execTotalCount" resultType="int">
 		select count(*) from cgv_member
 	</select>
 	
@@ -43,9 +43,16 @@
 		   		     , phone
 		   			 , to_char(jdate,'yy/mm/dd-hh24:mi:ss')as jdate
 		   			   from (select * from cgv_member order by jdate desc))
-					   where rno between #{startCount} and #{endCount}
+					   where rno between #{param1} and #{param2}
 	</select>
-	
+	<select id="getResultSetContent" resultType="mycgv.vo.MemberVO">
+		select id
+			 , name
+			 , phone
+			 , to_char(jdate,'yy/mm/dd-hh24:mi:ss')as jdate
+			 , email
+			 , agree from cgv_member where id=#{id}
+	</select>
 	
 	
 	

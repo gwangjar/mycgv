@@ -25,6 +25,8 @@ public interface MemberDAO{
 	/* member list   pagenavi 사용*/
 	public ArrayList<MemberVO> getResultListPageNavi(int startCount, int endCount);
 	
+	/* 리스트 한개 가져오기 id name phone jdate email agree */
+	public MemberVO getResultSetContent(String id);
 	
 	// JOIN_PROCESS /* 리스트 한개 가져오기 : rs - > vo */
 	public MemberVO getResultSet(String sql); 
@@ -43,31 +45,7 @@ public interface MemberDAO{
 		return vo;*/
 	
 
-	/* 리스트 한개 가져오기 id name phone jdate email agree */
-	public MemberVO getResultSetContent(String id);
-//		MemberVO vo = new MemberVO();
-//		try {
-//			String sql = "select id,name,phone,to_char(jdate,'yy/mm/dd-hh24:mi:ss'),"
-//					+ " email,agree from cgv_member where id=?";
-//			getPreparedStatement(sql);
-//			pstmt.setString(1, id);
-//			rs = pstmt.executeQuery();
-//			if (rs.next()) {
-//				vo.setId(rs.getString(1));
-//				vo.setName(rs.getString(2));
-//				vo.setPhone(rs.getString(3));
-//				vo.setJdate(rs.getString(4));
-//				vo.setEmail(rs.getString(5));
-//				vo.setAgree(rs.getString(6));
-//			}
-//
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		return vo;
 	
-
-
 
 
 }

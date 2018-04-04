@@ -3,14 +3,21 @@ package mycgv.dao;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
-
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import mycgv.vo.MemberVO;
 import mycgv.vo.NoticeVO;
 
-public class PageNavi {
 
+/*Discard class after mybatis use.*/
+public class PageNavi {
+	/*
+	
+	  
+	@Autowired
+	SqlSessionTemplate sqlSession;
+	
 	// 페이징 처리 - startCount, endCount 구하기
 	int startCount = 0;
 	int endCount = 0;
@@ -49,13 +56,13 @@ public class PageNavi {
 	
 	public ArrayList<MemberVO> pageNaviMember(String rpage) {
 		setRpage(rpage);
-		MemberDAO dao = new MemberDAO();
+		MemberDAO dao = sqlSession.getMapper(MemberDAO.class);
 		setDbCount(dao.execTotalCount()); // DB에서 가져온 전체 행수	
 		pageCountSearch(dbCount);
 		startEndCountSearch(rpage);
 		ArrayList<MemberVO> list = dao.getResultList(startCount, endCount);
 						
-		dao.closed();	
+
 		return list;   
 
 	}
@@ -142,5 +149,5 @@ public class PageNavi {
 		this.dbCount = dbCount;
 	}
 	
-	
+	*/
 }

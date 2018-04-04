@@ -14,6 +14,7 @@ import javax.servlet.ServletContext;
 import mycgv.dao.*;
 import mycgv.vo.*;
 
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +27,8 @@ public class AdminController {
 	// Field에 추가
 		@Autowired
 		ServletContext context;
+		@Autowired
+		SqlSessionTemplate sqlSession;
 	
 	
 	@RequestMapping(value = "/admin.do", method = RequestMethod.GET)
@@ -35,34 +38,57 @@ public class AdminController {
 	
 	
 	//어드민 멤버 리스트 페이지 네비사용.
-/*	@SuppressWarnings({ "unchecked" })
+	
 	@RequestMapping(value="/admin_member_list.do")
 	public ModelAndView admin_member_list(String rpage){
 		ModelAndView mv = new ModelAndView();
-		
-	//	pagenavi.pagenavimethod  rpage 넣으면 start,end,rpage,dbcount값 나옴
-		PageNavi pn = new PageNavi();
-		ArrayList<MemberVO> pageNaviResult= pn.pageNaviMember(rpage);
+		MemberDAO dao = sqlSession.getMapper(MemberDAO.class);
+		 // 페이징 처리 - startCount, endCount 구하기
+		int startCount = 0;
+		int endCount = 0;
+		int pageSize = 5; // 한페이지당 게시물 수
+		int reqPage = 1; // 요청페이지
+		int pageCount = 1; // 전체 페이지 수
+		int dbCount = dao.execTotalCount(); // DB에서 가져온 전체 행수
 
-		
-		mv.addObject("list", pageNaviResult);
-		mv.addObject("rpage", pn.getRpage());
-		mv.addObject("dbCount", pn.getDbCount());
+		// 총 페이지 수 계산
+		if (dbCount % pageSize == 0) {
+			pageCount = dbCount / pageSize;
+		} else {
+			pageCount = dbCount / pageSize + 1;
+		}
+
+		// 요청 페이지 계산
+		if (rpage != null) {
+			reqPage = Integer.parseInt(rpage);
+			startCount = (reqPage - 1) * pageSize + 1;
+			endCount = reqPage * pageSize;
+
+		} else {
+			startCount = 1;
+			endCount = 5;
+			rpage = "1";
+		}
+		ArrayList<MemberVO> list = dao.getResultListPageNavi(startCount, endCount);
+		mv.addObject("list", list);
+		mv.addObject("rpage", rpage);
+		mv.addObject("dbCount", dbCount);
 		mv.setViewName("/admin/admin_member_list");
+		
 		return mv;
 	}
-*/
-/*	@RequestMapping(value="/admin_member_content.do",method=RequestMethod.GET)
+
+	@RequestMapping(value="/admin_member_content.do",method=RequestMethod.GET)
 	public ModelAndView admin_member_content(String id,String rno,String rpage){
 		ModelAndView mv = new ModelAndView();
-		MemberDAO dao = new MemberDAO();
+		MemberDAO dao = sqlSession.getMapper(MemberDAO.class);
 		MemberVO vo = dao.getResultSetContent(id);
-		dao.closed();
+
 		mv.addObject("rpage",rpage);
 		mv.addObject("vo",vo);
 		mv.setViewName("/admin/admin_member_content");
 		return mv;	
-	}*/
+	}
 	
 
 	@RequestMapping(value="/admin_notice_list.do")
