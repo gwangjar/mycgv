@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+// mybatis와 모두 맵핑했지
 @Controller
 public class BoardController {
 	// Field에 추가
@@ -81,20 +82,24 @@ public class BoardController {
 	public String board_check(BoardVO vo) throws Exception {
 		// 파일 업로드
 		String fname = vo.getFile().getOriginalFilename();
-		if (!fname.equals("")) {
-
+		
+		if(fname.equals("")){
+			vo.setFname("");
+			vo.setRfname("");
+			
+		}else{
 			UUID uuid = UUID.randomUUID(); // 랜덤코드 발생
 
 			String rfname = uuid.toString() + "_" + fname;
 			// 저장될 위치
 			String path = context.getRealPath("/upload/" + rfname);
 			
-			System.out.println("path :" + path);
+			System.out.println("사용자 게시판 파일 있을때path :" + path);
 
 			FileOutputStream fos = new FileOutputStream(path);
 			fos.write(vo.getFile().getBytes());
 			fos.close();
-
+			
 			vo.setFname(fname);
 			vo.setRfname(rfname);
 		}
@@ -214,22 +219,17 @@ public class BoardController {
 	 */
 	@RequestMapping(value = "/board_delete.do", method = RequestMethod.POST)
 	public String board_delete(String no) throws IOException {
-		System.out.println(no);
+	
 		String page = "";
 		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
 
 		// 1.rfname 값을 DB에서 가져오기
 		String rfname = dao.getRfnameResult(no); // rfname과 getDelete 순서 맞춰야함.
-		System.out.println("보드 삭제 쪽:"+rfname);
 
 		// 2.servletContext upload 폴더 경로 생성
 		String path = context.getRealPath("/upload/" + rfname);
 
-		System.out.println(path);
-		// 다시 확인~!@~@~!@
-
 		int result = dao.getDeleteResult(no);
-		System.out.println(no);
 		if (result == 1) {
 			File file = new File(path);
 			if (file.exists()) {
@@ -237,9 +237,7 @@ public class BoardController {
 			}
 
 			// board.do로 넘기는 이유는, 원페이지가 아니라 data가 컨트롤러에서 뿌려주기 때문이다
-
 			page = "redirect:/board.do";
-
 		}
 		
 		return page;

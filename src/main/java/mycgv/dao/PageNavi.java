@@ -47,7 +47,7 @@ public class PageNavi {
 	}	
 	
 	
-	/*public ArrayList<MemberVO> pageNaviMember(String rpage) {
+	public ArrayList<MemberVO> pageNaviMember(String rpage) {
 		setRpage(rpage);
 		MemberDAO dao = new MemberDAO();
 		setDbCount(dao.execTotalCount()); // DB에서 가져온 전체 행수	
@@ -58,7 +58,7 @@ public class PageNavi {
 		dao.closed();	
 		return list;   
 
-	}*/
+	}
 	
 	public ArrayList<NoticeVO> pageNaviNotice(String rpage) {
 		setRpage(rpage);

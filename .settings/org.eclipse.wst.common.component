@@ -6,6 +6,6 @@
 		<wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/lib"/>
 		<property name="java-output-path" value="target/classes"/>
-        <property name="context-root" value="smycgv"/>
+        <property name="context-root" value="mycgv"/>
 	</wb-module>
 </project-modules>
