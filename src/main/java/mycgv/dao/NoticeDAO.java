@@ -15,34 +15,8 @@ public interface NoticeDAO {
 	public ArrayList<NoticeVO> getResultList(int startCount, int endCount);
 	
 
-	/* 1개의 ROW 가지고 오기 */
+	/* 1개의 ROW 가지고 오기 content, update 폼 */
 	public NoticeVO getResultVO(String no);
-	/*
-	{
-		NoticeVO vo = new NoticeVO();
-		try {
-			String sql = "select title,ndate,hits,content from cgv_notice "
-					+ " where no=?";
-			getPreparedStatement(sql);
-			pstmt.setString(1, no);
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				vo.setTitle(rs.getString(1));
-				vo.setNdate(rs.getString(2));
-				vo.setHits(rs.getInt(3));
-				if (rs.getString(4).equals("empty")) {
-					vo.setContent("");
-				} else {
-					vo.setContent(rs.getString(4));
-				}
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return vo;
-	}
-	*/
-
 	/* 공지사항 등록 DML-INSERT */
 	public int getInsertResult(NoticeVO vo);
 	/*

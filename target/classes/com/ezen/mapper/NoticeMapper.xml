@@ -20,6 +20,18 @@
 	<select id="execTotalCount" resultType="int">
 		select count(*) from cgv_notice	
 	</select>
+	
+	<select id="getResultVO" resultType="mycgv.vo.NoticeVO">
+	select title
+		 , ndate
+		 , hits
+		 , content
+	  from cgv_notice where no=#{no}	
+	</select>
+	
+	<update id="getHitsResult">
+	update cgv_notice set hits=hits+1 where no=#{no}				
+	</update>
 
 
 

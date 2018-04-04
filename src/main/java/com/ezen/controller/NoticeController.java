@@ -67,11 +67,10 @@ public class NoticeController {
 	@RequestMapping(value="/notice_content.do",method=RequestMethod.GET)
 		public ModelAndView notice_content(String no,String rno,String rpage){
 		ModelAndView mv= new ModelAndView();
-		NoticeDAO dao =new NoticeDAO();
+		NoticeDAO dao =sqlSession.getMapper(NoticeDAO.class);
 		NoticeVO vo=dao.getResultVO(no);
 		/*hits update*/
 		dao.getHitsResult(no);
-		dao.close();
 		mv.setViewName("/notice/notice_content");
 		mv.addObject("vo", vo);
 		mv.addObject("rno", rno);
