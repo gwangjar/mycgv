@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mycgv.dao.NoticeDAO">
+
+	<select id="getResultList" resultType="mycgv.vo.NoticeVO">
+		select rno
+			 , no
+			 , title
+			 , ndate
+			 , hits from (select rownum as rno
+			 				   , no
+			 				   , title
+			 				   , to_char(ndate,'yyyy/mm/dd') as ndate
+			 				   , hits from (select * from cgv_notice order by ndate desc))
+											 where rno between #{param1} and #{param2}	
+	
+	</select>
+	<select id="execTotalCount" resultType="int">
+		select count(*) from cgv_notice	
+	</select>
+
+
+
+
+
+
+
+
+
+
+</mapper>    
+    
+    
+    

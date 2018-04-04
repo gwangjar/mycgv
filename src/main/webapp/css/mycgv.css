@@ -1,0 +1,399 @@
+/*header style sheet*/
+/*주석 이런식으로~ 가능 선택자. selector~{property: value;..}
+selector type : html tag(element), class, id css에선 class// id jquery 에서 쓰고 한개만 만들 수 있다.
+(부모 자손...) ex> header div nav ul 이런식으로 쓰거나 ex) header>div>nav>ul 이런식으로도 가능
+*/
+body, header { width: 100%; margin : 0px; }
+header {
+	background-image : url("http://localhost:9010/mycgv/images/bg_header.gif");
+	height:150px;
+}
+header> div{
+width : 980px; margin :auto;
+
+}
+nav.header-nav1 ul li, nav.header-nav2 ul li{
+display: inline;
+}
+nav.header-nav1{
+	text-align :right;
+	margin: 0px;
+	
+}
+nav.header-nav1 ul li a{
+	/*top right bottom left */
+	padding: 0px 10px 0px 10px;
+	font-size: 9pt;
+	font-weight : bold; 
+	
+	text-decoration: none;
+	color:rgb(63,63,61);
+	border-right: 1px solid rgb(63,63,61);
+}
+
+header nav.header-nav2 ul li a{
+	position : relative;
+	left: 250px;
+	up:10px;
+	bottom:10px;
+	font-weight: bold; 
+	padding: 0px 30px 0px 20px;
+	font-size: 13pt;
+}
+
+
+nav.header-nav1 ul li:nth-child(5) a{
+	border-right:none;
+}
+nav.header-nav2 img.Logo{
+	position : relative;
+	left:20px;
+	top:35px;
+}
+nav.header-nav2 img.culture{
+	position :relative;
+	left:220px;
+	top:5px;
+	
+}
+
+	header a{
+	text-decoration:none;
+	}
+
+
+
+	
+/*index style sheet*/
+body{background-color: rgb(253,252,240);}
+body div.content{width: 100%; margin: auto; }
+body div.content section.section01 div.ticket{	
+	display:inline-block;
+	margin: auto;	
+}
+body div.content section.section01 div.nba-ad{	
+	
+	background-color: white;
+}
+
+body section.section01{
+	text-align: center;
+	
+}
+
+body section.section01 div.carousel{
+	width: 100%;
+	background-image : url("http://localhost:9010/mycgv/images/bg_c_bricks.png");	
+	height:450px;
+}
+body section.section01 div.carousel h1{
+	
+	display: inline-block;
+	width: 980px;
+	height: 450px;
+	font-size : 40px;
+	background-color: Tomato;
+	margin:auto; 
+}
+body section.section02{
+	text-align: center;
+	width:980px; margin :auto;			
+}
+
+body div.content section.event{
+	text-align: center;
+	
+}
+
+
+
+/*footer style sheet*/
+body,footer{100%,margin: 0px;}
+footer{background-color: rgb(253,252,240);}
+/*footer div{width: 980px ;  margin : auto; } */
+footer nav{text-align: center;}
+footer nav ul li {display: inline;}
+footer nav ul li a{
+	text-decoration: none;
+	font-size: 9pt;
+	font-weight:bold;		padding : 5px 10px 5px 10px;
+	border-right: 1px solid rgb(63,63,61);
+}
+body footer div nav.footerAd{
+	width: 100%
+	border: 3px solid red;
+}	
+footer div nav.footerAd{
+	background-image: url("http://localhost:9010/mycgv/images/ad1_back.png");	
+	background-size: 1152px 128px;
+	width: 100%;	
+	border: 1px solid red;
+	
+}
+
+
+
+
+/*commons style content*/
+
+body div.content section.content-style{
+	width: 980px; margin:auto;
+	}
+	
+body div.content section.content-style h1{
+	width: 400px; height: 50px;
+	border-left :15px solid gray;
+	border-bottom: 1px solid gray; 
+	font-size:38px;
+	color: rgb(63,63,61);
+	padding: 0px,0px,3px,15px;
+	margin-left:30px;
+}
+
+body div.content section.content-style form{
+	margin:auto;
+	width:700px;
+	
+	
+}
+body div.content section.content-style table{
+	margin:auto;
+	width:700px;
+	border: 3px solid blue;
+}
+body div.content section.content-style form.join li,
+body div.content section.content-style form.login li{
+	list-style:none;
+	padding: 10px 5px 10px 5px;
+	border-radius: 8px;
+}
+body div.content section.content-style form.join li label,
+body div.content section.content-style form.login li label{
+	display : inline-block;
+	background-color:Tomato;
+	width: 100px;
+	padding : 7px 7px 7px 20px;
+	font-size:12pt; font-weight: bold; color:white;
+	border-radius: 8px;
+	
+}
+
+body div.content section.content-style form.login input{
+	width: 60%; padding:7px;	
+	margin-left:5px;
+	border:1px solid gray;
+	border-radius:5px;
+}
+
+
+button{
+	width: 120px;height:40px; background-color: gray;
+	border-radius: 8px;
+	border: 1px solid gray;
+	font-size:11pt; 
+	coler:white;
+}
+body div.content section.content-style form.join input{
+	width: 60%; padding:7px;	
+	margin-left:5px;
+	border:1px solid gray;
+	border-radius:5px;
+}
+body div.content section.content-style form.join input.join-input,
+body div.content section.content-style form.join input.select{
+	width: 15%; padding:7px;	
+	margin-left:5px;
+	border:1px solid gray;
+	border-radius:5px;
+}
+body div.content section.content-style form.join input[type=checkbox]{
+	width: 5%;
+}
+body div.content section.content-style form.join li span{
+	font-size: 10pt; color: rgb(63,63,61);
+	}
+body div.content section.content-style form.join ul li:nth-child(8){
+	text-align: center;
+}
+body div.content section.content-style form.login ul li:nth-child(3){
+	text-align: center;
+}		
+
+body div.content section.content-style table{width: 75%}
+body div.content section.content-style table,
+body div.content section.content-style table th,
+body div.content section.content-style table td
+{
+border : 1px solid #c0c0c0;
+	border-collapse: collapse;
+	
+}
+
+body div.content section.content-style table th,
+body div.content section.content-style table td
+{
+	padding : 7px;
+	text-align :center;
+	
+}
+body div.content section.content-style table tr:nth-child(1){
+	background-color: Tomato;
+	color :white;
+
+}
+
+section.content-style table.notice-content tr:nth-child(1) td:nth-child(1){
+	border : 3px solid blue;
+	width: 10%;	
+
+}*/
+
+
+section.content-style table.notice-content tr:nth-child(1) td:nth-child(4){
+	border: 3px solid blue;
+}
+section.content-style table.notice-content tr:nth-child(3) td,
+section.content-style table.notice-content tr:nth-child(3) th
+{
+	
+	text-align: left;
+	padding: 100px 0px 100px 50px;
+	
+
+}
+
+/* BOARD -LIST */
+
+section.content-style div.board-list-btn{
+	
+	width: 87.5%;
+	text-align: right;
+	padding-bottom: 10px;
+}	
+
+/*board_write*/
+
+body div.content section.content-style form.board li{
+	list-style:none;
+	padding: 10px 5px 10px 5px;
+	border-radius: 8px;
+}
+
+body div.content section.content-style form.board li.name label{
+	display : inline-block;
+	background-color:Tomato;
+	width: 100px;
+	padding : 7px 7px 7px 20px;
+	font-size:12pt; font-weight: bold; color:white;
+	border-radius: 8px;
+	
+}
+body div.content section.content-style form.board li:nth-child(1) input{
+	width:78.5%;	
+}
+body div.content section.content-style form.board li:nth-child(2) label {
+		background-color: fuchsia;
+}
+body div.content section.content-style form.board li:nth-child(2) label,
+body div.content section.content-style form.board li:nth-child(2) input
+{
+		width:10%;
+		text-align: right;
+}
+body div.content section.content-style form.board li:nth-child(3) input{
+	width:100%;
+	height: 300px;
+	font-size: 20pt;
+	text-align: top;
+	
+}
+body div.content section.content-style form.board li:nth-child(4) input{
+	border: 1px solid black;	
+}
+
+
+/*my cgv*/
+body div.content section.content-style form.mycgv{
+	text-align: center;
+}
+body div.content section.content-style form.mycgv span{
+	display:inline-block;
+	width: :400px; height: 200px;
+	border-radius: 8px;
+	line-height:200px;
+	color: white; 
+	font-size: 13pt;
+	font-weight: bold;
+
+}
+body div.content section.content-style form.mycgv span.span1{
+	background-color: purple;margin-right: 40px;
+}
+body div.content section.content-style form.mycgv span.span2{
+		background-color: blue;
+}
+
+body section.section01 div.carousel div#demo{
+ 	display:inline-block; 
+	width:980px; height: 450px; 	
+}
+/* 보드에서 수정시 file 이름 보이게 만들기*/
+body div.content section.content-style form.join ul li span.updateFile{
+/*     border: 3px solid red; */
+    background-color: rgb(253,252,240);
+    display: inline-block;
+    width:300px; height: 25px;
+    position: relative;
+    top: -35px;
+    left:220px;
+    font-size: 11pt;
+    font-family: 맑은고딕;	
+	}
+body div.content section.content-style form.join ul li:nth-child(7){
+	margin-top: -20px;
+}
+/*board 덧글 css*/
+
+<style>
+	.reply-title { 
+		text-align:right;
+		cursor:pointer;
+	}
+	.reply-write { display:none;}
+	.reply-write-title{
+		text-align:left;
+		padding:0px 0px 10px 10px;		
+	}
+	.reply-write-content{
+		dispaly:inline-block;
+		width:83%;
+		height:100px;		
+		float:left;	
+		margin-left:10px;
+		border:1px solid gray;	
+		text-align:left;
+		padding:3px;
+	}
+	.reply-write-button{
+		dispaly:inline-block;
+		width:14%;
+		height:100px;
+		line-height:100px;		
+		float:right;
+		background-color:lightGray;
+		border:1px solid gray;	
+		padding:3px 0px 3px 0px;
+		margin-right:1.3px;
+	}
+	.reply-content{
+		dispaly:inline-block;
+		width:100%;
+		height:100px;
+		border:2px solid red;
+		clear:right;
+		margin-top:10px;
+	}
+</style>
+
+
+
