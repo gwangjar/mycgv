@@ -14,24 +14,24 @@
 	//Statement용 sql 형식
 	//String sql="select count(*) from cgv_member where id='"+vo.getId()+"' and pass='"+vo.getPass()+"'";
 	//PreparedStatement용 sql 형식	
-	String sql=	"select count(*) from cgv_member where id=? and pass=? ";
-	MemberDAO dao =new MemberDAO();
+// 	String sql=	"select count(*) from cgv_member where id=? and pass=? ";
+// 	MemberDAO dao =new MemberDAO();
 	//dao.getStatement();
 	//int result = dao.getLoginResult();
-	dao.getPreparedStatement(sql);
-	int result=dao.getLoginResult(vo);
+// 	dao.getPreparedStatement(sql);
+// 	int result=dao.getLoginResult(vo);
 	
-	dao.closed();
-	System.out.println(result);
-	if(result==1){
-		//로그인 성공
-		session.setAttribute("sid",vo.getId());  // sid 
-		response.sendRedirect("../index.jsp");
-	}else{
+// 	dao.closed();
+// 	System.out.println(result);
+// 	if(result==1){
+// 		//로그인 성공
+// 		session.setAttribute("sid",vo.getId());  // sid 
+// 		response.sendRedirect("../index.jsp");
+// 	}else{
 		
-		//로그인 실패
-		response.sendRedirect("login_fail.jsp");
-	}
+// 		//로그인 실패
+// 		response.sendRedirect("login_fail.jsp");
+// 	}
 
 
 %>

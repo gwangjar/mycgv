@@ -8,12 +8,12 @@
 
 <%
 //DB생성
-String sql ="select * from cgv_member where id= '"+vo.getId()+"'";
+// String sql ="select * from cgv_member where id= '"+vo.getId()+"'";
 
-MemberDAO dao= new MemberDAO();
-MemberVO dvo =new MemberVO();
-dao.getStatement();
-vo=dao.getResultSet(sql);
+// MemberDAO dao= new MemberDAO();
+// MemberVO dvo =new MemberVO();
+// dao.getStatement();
+// vo=dao.getResultSet(sql);
 
 // 지금은 안쓴다. 그냥 예전에 했던거니까 구경만하자
 

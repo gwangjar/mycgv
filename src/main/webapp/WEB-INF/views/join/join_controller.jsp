@@ -12,19 +12,19 @@
 	//String sql="insert into cgv_member values('"+vo.getId()+"','"+vo.getPass()+"',"
 			
 	//		+"'"+vo.getName()+"','"+vo.getSumPhone()+"','"+vo.getSumEmail()+"','"+vo.getAgree()+"',sysdate)";
-	String sql ="insert into cgv_member values(?,?,?,?,?,?,sysdate)";
-	MemberDAO dao = new MemberDAO();
+// 	String sql ="insert into cgv_member values(?,?,?,?,?,?,sysdate)";
+// 	MemberDAO dao = new MemberDAO();
 	//dao.getStatement();
-	dao.getPreparedStatement(sql);
-	int result =dao.getInsertResult(vo);
+// 	dao.getPreparedStatement(sql);
+// 	int result =dao.getInsertResult(vo);
 	
-	if(result==1){
+// 	if(result==1){
 
-		response.sendRedirect("../index.jsp");
+// 		response.sendRedirect("../index.jsp");
 		
-	}
+// 	}
 
-	dao.closed();
+// 	dao.closed();
 
 
 %>

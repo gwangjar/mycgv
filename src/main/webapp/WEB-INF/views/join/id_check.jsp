@@ -3,11 +3,11 @@
 <%@ page import = "mycgv.dao.*" %>  
 
 <%
-	String id = request.getParameter("id");
+// 	String id = request.getParameter("id");
 
-	MemberDAO dao = new MemberDAO();
-	int result = dao.getIdCheckResult(id);
-	out.print(result); // function(data) <-data로 들어간다
+// 	MemberDAO dao = new MemberDAO();
+// 	int result = dao.getIdCheckResult(id);
+// 	out.print(result); // function(data) <-data로 들어간다
 
 %> 
 		
